@@ -15,7 +15,9 @@ import { TaskComponent } from './task/task.component';
 import { TaskDialogComponent } from './task-dialog/task-dialog.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAnalytics,getAnalytics,ScreenTrackingService,UserTrackingService } from '@angular/fire/analytics';
+import { AngularFirestoreModule, SETTINGS } from '@angular/fire/compat/firestore/';
+import { AngularFireModule } from '@angular/fire/compat';
+import { provideAnalytics,getAnalytics } from '@angular/fire/analytics';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
@@ -42,6 +44,8 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     MatDialogModule,
     MatInputModule,
     FormsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAnalytics(() => getAnalytics()),
     provideAuth(() => getAuth()),
@@ -53,9 +57,7 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     provideRemoteConfig(() => getRemoteConfig()),
     provideStorage(() => getStorage())
   ],
-  providers: [
-    ScreenTrackingService,UserTrackingService
-  ],
+  providers: [{ provide: SETTINGS, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
