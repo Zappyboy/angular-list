@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "zapp-list": {
+      "hosting": {
+        "zapp-list": [
+          "zapp-list"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "zapp-list"
+  }
+}
